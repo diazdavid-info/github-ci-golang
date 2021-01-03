@@ -34,11 +34,11 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
           fi
+          if [[ $GITHUB_REF == refs/heads/dev ]]; then
+            VERSION=dev
+          fi
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly
-          fi
-          if [ "${{ github.head_ref }}" = "dev" ]; then
-            VERSION=dev
           fi
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
