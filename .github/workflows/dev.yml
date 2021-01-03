@@ -37,7 +37,7 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly
           fi
-          if [ "${{ github.event_name }}" = "dev" ]; then
+          if [ "${{ github.head_ref }}" = "dev" ]; then
             VERSION=dev
           fi
           TAGS="${DOCKER_IMAGE}:${VERSION}"
